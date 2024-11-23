@@ -1,0 +1,5 @@
+Закончить UserDto
+
+добавить миграции liquid base или flyway
+
+spring - spring context, spring bean ( https://www.youtube.com/watch?v=RIGZgdALyps&t=238s )

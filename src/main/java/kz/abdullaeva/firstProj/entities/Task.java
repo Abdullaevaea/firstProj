@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

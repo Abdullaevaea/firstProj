@@ -1,34 +1,42 @@
 package kz.abdullaeva.firstProj.services.impl;
 
+import kz.abdullaeva.firstProj.dtos.TaskDto;
 import kz.abdullaeva.firstProj.entities.Task;
-
 import kz.abdullaeva.firstProj.repositories.TaskRepository;
-
 import kz.abdullaeva.firstProj.services.TaskService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<TaskDto> getAllTasks() {
+        List<Task> all = taskRepository.findAll();
+        return null;
     }
 
     @Override
-    public Task getTaskById(Long id) {
-        return taskRepository.findAllById(id);
+    public TaskDto getTaskById(Long id) {
+        Task task = taskRepository.findAllById(id);
+        TaskDto taskDto = new TaskDto();
+        taskDto.setTitle(task.getTitle());
+        taskDto.setDescription(task.getDescription());
+        return taskDto;
     }
 
     @Override
-    public Task addTask(Task task) {
-        return taskRepository.save(task);
+    public TaskDto addTask(TaskDto task) {
+        return null;
     }
 
     @Override
-    public Task updateTask(Task task) {
-        return taskRepository.save(task);
+    public TaskDto updateTask(Task task) {
+        return null;
     }
 
     @Override

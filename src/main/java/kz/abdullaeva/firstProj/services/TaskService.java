@@ -1,17 +1,18 @@
 package kz.abdullaeva.firstProj.services;
 
+import kz.abdullaeva.firstProj.dtos.TaskDto;
 import kz.abdullaeva.firstProj.entities.Task;
 
 import java.util.List;
 
 public interface TaskService {
-    List<Task> getAllTasks();
+    List<TaskDto> getAllTasks();
 
-    Task getTaskById(Long id);
+    TaskDto getTaskById(Long id);
 
-    Task addTask(Task task);
+    TaskDto addTask(TaskDto task);
 
-    Task updateTask(Task task);
+    TaskDto updateTask(Task task);
 
     void deleteTask(Long id);
 }
