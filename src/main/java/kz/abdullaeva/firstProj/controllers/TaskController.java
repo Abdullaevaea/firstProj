@@ -14,9 +14,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public List<TaskDto> getAllTasks() {
-        return taskService.getAllTasks();
-    }
+    public List<TaskDto> getAllTasks() { return taskService.getAllTasks();}
 
     @GetMapping("/{id}")
     public TaskDto getTaskById(@PathVariable("id") long id) {

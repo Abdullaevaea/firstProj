@@ -1,13 +1,14 @@
 package kz.abdullaeva.firstProj.services;
 
+import kz.abdullaeva.firstProj.dtos.UserDto;
 import kz.abdullaeva.firstProj.entities.User;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getAllUsers();
-    User getUserById(Long id);
-    User addUser(User user);
-    User updateUser(User user);
+    List<UserDto> getAllUsers();
+    UserDto getUserById(Long id);
+    UserDto addUser(UserDto user);
+    UserDto updateUser(UserDto user);
     void deleteUser(Long id);
 }

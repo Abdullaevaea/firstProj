@@ -1,34 +1,38 @@
 package kz.abdullaeva.firstProj.services.impl;
 
+import kz.abdullaeva.firstProj.dtos.UserDto;
 import kz.abdullaeva.firstProj.entities.User;
+import kz.abdullaeva.firstProj.mapper.UserMapper;
 import kz.abdullaeva.firstProj.repositories.UserRepository;
 import kz.abdullaeva.firstProj.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private UserMapper userMapper;
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return userMapper.mapToDtoList(users);
+    }
+    @Override
+    public UserDto getUserById(Long id) {
+        return userMapper.mapToDto(userRepository.findById(id).orElse(null));
     }
 
     @Override
-    public User getUserById(Long id) {
-        return userRepository.findAllById(id);
+    public UserDto addUser(UserDto userDto) {
+        return userMapper.mapToDto(userRepository.save(userMapper.mapToEntity(userDto)));
     }
 
     @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public UserDto updateUser(UserDto user) {
+        return userMapper.mapToDto(userRepository.save(userMapper.mapToEntity(user)));
     }
 
     @Override

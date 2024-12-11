@@ -1,7 +1,10 @@
 package kz.abdullaeva.firstProj.controllers;
 
+import kz.abdullaeva.firstProj.dtos.UserDto;
 import kz.abdullaeva.firstProj.entities.User;
 import kz.abdullaeva.firstProj.repositories.UserRepository;
+import kz.abdullaeva.firstProj.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,33 +12,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    public List<UserDto> getAllUsers() { return userService.getAllUsers(); }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable("id") long id) {
-        return userRepository.findAllById(id);
+    public UserDto getUserById(@PathVariable("id") long id) {
+        return userService.getUserById(id);
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
-        userRepository.save(user);
-    }
+    public void addUser(@RequestBody UserDto user) { userService.addUser(user); }
 
     @PutMapping
-    public void updateUser(@RequestBody User user) {
-        userRepository.save(user);
+    public void updateUser(@RequestBody UserDto user) {
+        userService.updateUser(user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable("id") long id) {
-        userRepository.deleteById(id);
+        userService.deleteUser(id);
     }
 
 }
